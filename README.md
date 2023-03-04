@@ -12,4 +12,8 @@ Get to know more on flutter [here](https://flutter.dev/?gclid=Cj0KCQiArsefBhCbAR
 ### Back-end
 The back-end is built using the Django framework. Get to know more about django framework [here](https://www.djangoproject.com/)
 
+### Design   
+Figma has been used to design SHED.  
+[Here](https://www.figma.com/file/ky4TPvaaSrWxSyRxmvkE0w/Artllery?node-id=31%3A47&t=PEucUXZimVhQbsly-1) are the designs.
+
 ## Getting started with Artllery
