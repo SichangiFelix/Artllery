@@ -180,12 +180,17 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 SizedBox(height: screenHeight/60,) ,
-                const Text(
-                  "I agree with the terms and conditions",
-                  style: TextStyle(
-                    fontSize: 14,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                  const Text(
+                    "I agree with the terms and conditions",
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
                   ),
-                ),
+                  Checkbox(value: false, onChanged: (val){}),
+                ],),
                 SizedBox(height: screenHeight/60,),
                 OrangeButton(press: (){}, buttonName: "Signup"),
                 SizedBox(height: screenHeight/60,),
