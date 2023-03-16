@@ -1,5 +1,6 @@
 import 'package:artllery_mobile/features/authentication/screens/forgot_password_screen.dart';
 import 'package:artllery_mobile/features/authentication/screens/signup_screen.dart';
+import 'package:artllery_mobile/features/authentication/services/login_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/widgets/orange_button.dart';
@@ -15,6 +16,12 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
+
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  final GlobalKey<FormState> formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
 
@@ -26,6 +33,7 @@ class _SigninScreenState extends State<SigninScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: (screenWidth-screenWidth/1.4)/2),
           child: Form(
+            key: formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -43,6 +51,13 @@ class _SigninScreenState extends State<SigninScreen> {
                   width: screenWidth/1.4,
                   height: screenHeight/18,
                   child: TextFormField(
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return "Please enter an email";
+                      }
+                    },
+                      keyboardType: TextInputType.emailAddress,
+                    controller: usernameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(18),
@@ -73,6 +88,12 @@ class _SigninScreenState extends State<SigninScreen> {
                   width: screenWidth/1.4,
                   height: screenHeight/18,
                   child: TextFormField(
+                    controller: passwordController,
+                      validator: (value){
+                        if(value!.isEmpty){
+                          return "Please enter your password to continue";
+                        }
+                      },
                     obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -105,7 +126,11 @@ class _SigninScreenState extends State<SigninScreen> {
                   ),
                 ),
                 SizedBox(height: screenHeight/30,),
-                OrangeButton(press: (){}, buttonName: "Signin"),
+                OrangeButton(press: (){
+                  if(formKey.currentState!.validate()){
+                    LoginService().loginUser(username: usernameController.text, password: passwordController.text);
+                  }
+                }, buttonName: "Signin"),
                 SizedBox(height: screenHeight/30,),
                 GestureDetector(
                   onTap: (){

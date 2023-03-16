@@ -14,6 +14,9 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+
+  final GlobalKey<FormState> formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
 
@@ -22,190 +25,225 @@ class _SignupScreenState extends State<SignupScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: (screenWidth-screenWidth/1.4)/2),
-          child: Form(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "First Name",
-                    style: TextStyle(
-                      fontSize: 20,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: (screenWidth-screenWidth/1.4)/2),
+            child: Form(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: screenHeight/12,
+                  ),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "First Name",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 6,),
-                SizedBox(
-                  width: screenWidth/1.4,
-                  height: screenHeight/18,
-                  child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),)
-                  ),
-                ),
-                SizedBox(height: screenHeight/60,),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Second Name",
-                    style: TextStyle(
-                      fontSize: 20,
+                  const SizedBox(height: 6,),
+                  SizedBox(
+                    width: screenWidth/1.4,
+                    height: screenHeight/18,
+                    child: TextFormField(
+                      validator: (value){
+                        if(value!.isEmpty){
+                          return "Please enter your first name";
+                        }
+                      },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),)
                     ),
                   ),
-                ),
-                const SizedBox(height: 6,),
-                SizedBox(
-                  width: screenWidth/1.4,
-                  height: screenHeight/18,
-                  child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),)
-                  ),
-                ),
-                SizedBox(height: screenHeight/60,),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Email",
-                    style: TextStyle(
-                      fontSize: 24,
+                  SizedBox(height: screenHeight/60,),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Second Name",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 6,),
-                SizedBox(
-                  width: screenWidth/1.4,
-                  height: screenHeight/18,
-                  child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),)
-                  ),
-                ),
-                SizedBox(height: screenHeight/60,),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Password",
-                    style: TextStyle(
-                      fontSize: 20,
+                  const SizedBox(height: 6,),
+                  SizedBox(
+                    width: screenWidth/1.4,
+                    height: screenHeight/18,
+                    child: TextFormField(
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return "Please enter your second name";
+                          }
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),)
                     ),
                   ),
-                ),
-                const SizedBox(height: 6,),
-                SizedBox(
-                  width: screenWidth/1.4,
-                  height: screenHeight/18,
-                  child: TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),)
-                  ),
-                ),
-                SizedBox(height: screenHeight/60,),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Confirm Password",
-                    style: TextStyle(
-                      fontSize: 20,
+                  SizedBox(height: screenHeight/60,),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Email",
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 6,),
-                SizedBox(
-                  width: screenWidth/1.4,
-                  height: screenHeight/18,
-                  child: TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: const BorderSide(
-                              width: 2,
-                            )
-                        ),)
-                  ),
-                ),
-                SizedBox(height: screenHeight/60,) ,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                  const Text(
-                    "I agree with the terms and conditions",
-                    style: TextStyle(
-                      fontSize: 14,
+                  const SizedBox(height: 6,),
+                  SizedBox(
+                    width: screenWidth/1.4,
+                    height: screenHeight/18,
+                    child: TextFormField(
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return "Please enter your email";
+                          }
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),)
                     ),
                   ),
-                  Checkbox(value: false, onChanged: (val){}),
-                ],),
-                SizedBox(height: screenHeight/60,),
-                OrangeButton(press: (){}, buttonName: "Signup"),
-                SizedBox(height: screenHeight/60,),
-                GestureDetector(
-                  onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return SigninScreen();}));
-                  },
-                  child: const Text(
-                    "I already have an account",
-                    style: TextStyle(
-                      fontSize: 14,
+                  SizedBox(height: screenHeight/60,),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Password",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 6,),
+                  SizedBox(
+                    width: screenWidth/1.4,
+                    height: screenHeight/18,
+                    child: TextFormField(
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return "You have to provide a password";
+                          }
+                        },
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),)
+                    ),
+                  ),
+                  SizedBox(height: screenHeight/60,),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Confirm Password",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 6,),
+                  SizedBox(
+                    width: screenWidth/1.4,
+                    height: screenHeight/18,
+                    child: TextFormField(
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return "Please confirm your password";
+                          }else if(value.length < 8){
+                            return "Your password should be more than 8 characters long";
+                          }
+                        },
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(
+                                width: 2,
+                              )
+                          ),)
+                    ),
+                  ),
+                  SizedBox(height: screenHeight/60,) ,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                    const Text(
+                      "I agree with the terms and conditions",
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                    Checkbox(value: false, onChanged: (val){}),
+                  ],),
+                  SizedBox(height: screenHeight/60,),
+                  OrangeButton(press: (){
+                    if(formKey.currentState!.validate()){
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You have successfully created an account")));
+                    }
+                  }, buttonName: "Signup"),
+                  SizedBox(height: screenHeight/60,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return SigninScreen();}));
+                    },
+                    child: const Text(
+                      "I already have an account",
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
