@@ -16,6 +16,11 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
 
   final GlobalKey<FormState> formKey = GlobalKey();
+  TextEditingController fNameController = TextEditingController();
+  TextEditingController sNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController fPasswordController = TextEditingController();
+  TextEditingController sPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: (screenWidth-screenWidth/1.4)/2),
             child: Form(
+              key: formKey,
               child: Column(
                 children: [
                   SizedBox(
@@ -46,14 +52,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 6,),
                   SizedBox(
                     width: screenWidth/1.4,
-                    height: screenHeight/18,
+                    height: screenHeight/13,
                     child: TextFormField(
+                        controller: fNameController,
                       validator: (value){
                         if(value!.isEmpty){
                           return "Please enter your first name";
                         }
                       },
                         decoration: InputDecoration(
+                          helperText: "",
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: const BorderSide(
@@ -65,10 +73,11 @@ class _SignupScreenState extends State<SignupScreen> {
                               borderSide: const BorderSide(
                                 width: 2,
                               )
-                          ),)
+                          ),
+                        )
                     ),
-                  ),
-                  SizedBox(height: screenHeight/60,),
+                  ) ,
+                  SizedBox(height: screenHeight/100,),
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -81,14 +90,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 6,),
                   SizedBox(
                     width: screenWidth/1.4,
-                    height: screenHeight/18,
+                    height: screenHeight/13,
                     child: TextFormField(
+                        controller: sNameController,
                         validator: (value){
                           if(value!.isEmpty){
                             return "Please enter your second name";
                           }
                         },
                         decoration: InputDecoration(
+                          helperText: "",
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: const BorderSide(
@@ -103,7 +114,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),)
                     ),
                   ),
-                  SizedBox(height: screenHeight/60,),
+                  SizedBox(height: screenHeight/100,),
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -116,14 +127,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 6,),
                   SizedBox(
                     width: screenWidth/1.4,
-                    height: screenHeight/18,
+                    height: screenHeight/13,
                     child: TextFormField(
+                      controller: emailController,
                         validator: (value){
                           if(value!.isEmpty){
                             return "Please enter your email";
                           }
                         },
                         decoration: InputDecoration(
+                          helperText: "",
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: const BorderSide(
@@ -138,7 +151,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),)
                     ),
                   ),
-                  SizedBox(height: screenHeight/60,),
+                  SizedBox(height: screenHeight/100,),
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -151,15 +164,19 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 6,),
                   SizedBox(
                     width: screenWidth/1.4,
-                    height: screenHeight/18,
+                    height: screenHeight/13,
                     child: TextFormField(
+                      controller: fPasswordController,
                         validator: (value){
                           if(value!.isEmpty){
                             return "You have to provide a password";
+                          }else if(value!.length < 8){
+                            return "Your password must be 8 or more characters long";
                           }
                         },
                         obscureText: true,
                         decoration: InputDecoration(
+                          helperText: "",
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: const BorderSide(
@@ -174,7 +191,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),)
                     ),
                   ),
-                  SizedBox(height: screenHeight/60,),
+                  SizedBox(height: screenHeight/100,),
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -187,17 +204,21 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 6,),
                   SizedBox(
                     width: screenWidth/1.4,
-                    height: screenHeight/18,
+                    height: screenHeight/13,
                     child: TextFormField(
+                      controller: sPasswordController,
                         validator: (value){
                           if(value!.isEmpty){
                             return "Please confirm your password";
                           }else if(value.length < 8){
-                            return "Your password should be more than 8 characters long";
+                            return "Your password should be 8 or more characters long";
+                          }else if(value != fPasswordController.text){
+                            return "The two passwords must match!";
                           }
                         },
                         obscureText: true,
                         decoration: InputDecoration(
+                          helperText: "",
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: const BorderSide(
@@ -212,7 +233,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),)
                     ),
                   ),
-                  SizedBox(height: screenHeight/60,) ,
+                  SizedBox(height: screenHeight/100,)  ,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
