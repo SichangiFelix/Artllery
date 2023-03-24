@@ -1,7 +1,7 @@
 import 'package:artllery_mobile/features/authentication/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/widgets/OrangeButton.dart';
+import '../../../common/widgets/orange_button.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
 
