@@ -6,15 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService{
 
-  Future<bool> setToken(String value) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.setString('token', value);
-  }
-  Future getToken() async{
-    final SharedPreferences prefs = await  SharedPreferences.getInstance();
-    return prefs.getString('token');
-  }
-
   static const String baseURL= "http://192.168.56.1:8000";
   String? accessToken;
 
@@ -35,43 +26,41 @@ class AuthService{
    );
 
    if (response.statusCode == 200) {
-     print(response.statusCode);
-     print(jsonDecode(response.body)["access"]);
      final SharedPreferences prefs = await  SharedPreferences.getInstance();
-     prefs.setString("token", jsonDecode(response.body)["access"]);
-     print(accessToken);
+     prefs.setString("accessToken", jsonDecode(response.body)["access"]);
+     prefs.setString("refreshToken", jsonDecode(response.body)["refresh"]);
    } else {
-     throw Exception('Failed to update data');
+     throw Exception('Failed to login');
    }
  }
 
-  Future<void> createUser({required String username, required String password}) async{
+  Future<void> createUser({required Map<String, String> data}) async{
 
-    final _url = Uri.parse('$baseURL/user/');
-    var data = {
-      'username': "test1",
-      'password': "2222",
-      'first_name': "Ochux",
-      'second_name': "Wafs",
-      'email': "chux@gmail.com"
-    };
-
-    final SharedPreferences prefs = await  SharedPreferences.getInstance();
-    accessToken = prefs.getString('token');
+    final _url = Uri.parse('$baseURL/register/');
 
     var response = await http.post(_url,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
       },
       body: jsonEncode(data),
     );
 
     if (response.statusCode == 200) {
       print(response.body);
-      print('user created successfully');
     } else {
-      print(response.body);
+      throw Exception("Could not create user");
     }
   }
+
+  Future<bool> isLoggedIn() async{
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+   if(prefs.getString("accessToken") != null){
+     return true;
+   }else{
+     return false;
+   }
+  }
+
 }
