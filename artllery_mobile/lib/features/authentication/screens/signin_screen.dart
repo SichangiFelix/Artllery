@@ -1,6 +1,7 @@
 import 'package:artllery_mobile/features/authentication/screens/forgot_password_screen.dart';
 import 'package:artllery_mobile/features/authentication/screens/signup_screen.dart';
 import 'package:artllery_mobile/features/authentication/services/auth_service.dart';
+import 'package:artllery_mobile/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/widgets/orange_button.dart';
@@ -130,8 +131,10 @@ class _SigninScreenState extends State<SigninScreen> {
                 SizedBox(height: screenHeight/30,),
                 OrangeButton(press: (){
                   if(formKey.currentState!.validate()){
-                    //AuthService().loginUser(username: usernameController.text, password: passwordController.text);
-                    AuthService().createUser(username: "", password: "");
+                    AuthService().loginUser(username: usernameController.text, password: passwordController.text);
+                    if(AuthService().isLoggedIn() == true){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+                    }
                   }
                 }, buttonName: "Signin"),
                 SizedBox(height: screenHeight/30,),
