@@ -1,4 +1,5 @@
 import 'package:artllery_mobile/features/authentication/screens/signin_screen.dart';
+import 'package:artllery_mobile/features/authentication/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/widgets/orange_button.dart';
@@ -17,7 +18,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController fNameController = TextEditingController();
-  TextEditingController sNameController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController fPasswordController = TextEditingController();
   TextEditingController sPasswordController = TextEditingController();
@@ -81,7 +82,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Second Name",
+                      "Username",
                       style: TextStyle(
                         fontSize: 20,
                       ),
@@ -92,7 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     width: screenWidth/1.4,
                     height: screenHeight/13,
                     child: TextFormField(
-                        controller: sNameController,
+                        controller: usernameController,
                         validator: (value){
                           if(value!.isEmpty){
                             return "Please enter your second name";
@@ -248,7 +249,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   SizedBox(height: screenHeight/60,),
                   OrangeButton(press: (){
                     if(formKey.currentState!.validate()){
+
+                      var signUpData = {
+                        "first_name": fNameController.text,
+                        "username": usernameController.text,
+                        "email": emailController.text,
+                        "password": sPasswordController.text,
+                      };
+                      AuthService().createUser(data: signUpData);
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You have successfully created an account")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SigninScreen()));
                     }
                   }, buttonName: "Signup"),
                   SizedBox(height: screenHeight/60,),
