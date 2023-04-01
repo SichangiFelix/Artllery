@@ -30,7 +30,7 @@ class AuthService{
      prefs.setString("accessToken", jsonDecode(response.body)["access"]);
      prefs.setString("refreshToken", jsonDecode(response.body)["refresh"]);
    } else {
-     throw Exception('Failed to login');
+     throw Exception(response.body);
    }
  }
 
