@@ -146,12 +146,9 @@ class _SigninScreenState extends State<SigninScreen> {
                     return state is LoginSubmittingState ? const CircularProgressIndicator() : OrangeButton(
                         press: () {
                           if (formKey.currentState!.validate()) {
-                            //current
-                            //pass values to the bloc
-                            context.read<LoginBloc>().password = passwordController.text;
-                            context.read<LoginBloc>().username = usernameController.text;
 
-                            context.read<LoginBloc>().add(LoginSubmittedEvent());
+                            context.read<LoginBloc>().add(LoginSubmittedEvent(username: usernameController.text, password: passwordController.text));
+
                             if(state is LoginSuccessState){
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.read<LoginBloc>().feedbackMessage),));
                               Navigator.push(context, MaterialPageRoute(builder: (context){

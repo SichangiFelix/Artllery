@@ -267,10 +267,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               "email": emailController.text,
                               "password": secondPasswordController.text,
                             };
-                            //pass values to the bloc
-                            context.read<SignUpBloc>().signUpData = signUpData;
 
-                            context.read<SignUpBloc>().add(SignUpSubmittedEvent());
+                            context.read<SignUpBloc>().add(SignUpSubmittedEvent(signUpData: signUpData));
                             if(state is SignUpSuccessState){
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.read<SignUpBloc>().feedbackMessage),));
                               Navigator.push(context, MaterialPageRoute(builder: (context){
