@@ -7,6 +7,7 @@ import '../services/auth_service.dart';
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   late Map<String, String> signUpData = {};
   late String exceptionMessage;
+  late String feedbackMessage;
 
   final AuthService authService;
   SignUpBloc(
@@ -15,7 +16,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpSubmittedEvent>((event, emit) async {
       emit(SignUpSubmittingState());
       try {
-        await authService.createUser(data: signUpData);
+        feedbackMessage = await authService.createUser(data: signUpData);
         emit(SignUpSuccessState());
       } catch (exception) {
         exceptionMessage = exception.toString();
