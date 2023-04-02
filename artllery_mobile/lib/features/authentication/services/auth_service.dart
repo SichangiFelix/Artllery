@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +7,7 @@ class AuthService{
   static const String baseURL= "http://192.168.56.1:8000";
   String? accessToken;
 
- Future<void> loginUser({required String username, required String password}) async{
+ Future<String> loginUser({required String username, required String password}) async{
 
    final _url = Uri.parse('$baseURL/api/token/');
 
@@ -29,12 +27,13 @@ class AuthService{
      final SharedPreferences prefs = await  SharedPreferences.getInstance();
      prefs.setString("accessToken", jsonDecode(response.body)["access"]);
      prefs.setString("refreshToken", jsonDecode(response.body)["refresh"]);
+     return "User successfully logged in";
    } else {
      throw Exception(response.body);
    }
  }
 
-  Future<void> createUser({required Map<String, String> data}) async{
+  Future<String> createUser({required Map<String, String> data}) async{
 
     final _url = Uri.parse('$baseURL/register/');
 
@@ -46,7 +45,7 @@ class AuthService{
     );
 
     if (response.statusCode == 200) {
-      print(response.body);
+      return "User successfully created";
     } else {
       throw Exception("Could not create user");
     }
