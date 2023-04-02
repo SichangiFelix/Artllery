@@ -272,6 +272,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                             context.read<SignUpBloc>().add(SignUpSubmittedEvent());
                             if(state is SignUpSuccessState){
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.read<SignUpBloc>().feedbackMessage),));
                               Navigator.push(context, MaterialPageRoute(builder: (context){
                                 return const SigninScreen();
                               }));
