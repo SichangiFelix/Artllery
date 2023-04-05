@@ -3,6 +3,10 @@ abstract class LoginState{}
 class PreLoginState extends LoginState{
 
 }
+
+class LoggedIn extends LoginState{
+
+}
 class LoginSubmittingState extends LoginState {
 
 }
