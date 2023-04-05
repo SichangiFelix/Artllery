@@ -144,7 +144,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   ),
                   BlocBuilder<LoginBloc, LoginState>(builder: (context, state){
                     return state is LoginSubmittingState ? const CircularProgressIndicator() : OrangeButton(
-                        press: () {
+                        press: () async{
                           if (formKey.currentState!.validate()) {
 
                             context.read<LoginBloc>().add(LoginSubmittedEvent(username: usernameController.text, password: passwordController.text));
