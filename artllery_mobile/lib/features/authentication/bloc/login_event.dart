@@ -12,3 +12,7 @@ class LoginSubmittedEvent extends LoginEvent{
 }
 
 class LogoutEvent extends LoginEvent{}
+
+class CheckToken extends LoginEvent{
+
+}
