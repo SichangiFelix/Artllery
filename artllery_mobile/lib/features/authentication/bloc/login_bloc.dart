@@ -23,5 +23,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(LoginFailedState(exception: exception.toString()));
         }
       });
+
+      on<CheckToken>((event, emit) async {
+        if(await authService.isLoggedIn()){
+          emit(LoggedIn());
+        }else{
+          emit(PreLoginState());
+        }
+      });
+
+
   }
 }
