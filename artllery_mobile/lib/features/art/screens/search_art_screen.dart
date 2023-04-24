@@ -92,8 +92,13 @@ class _SearchArtScreenState extends State<SearchArtScreen> {
                 ),
                 itemCount: 8,
                 itemBuilder: (context, index) => Container(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset("assets/images/tree.png",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   decoration: BoxDecoration(
-                    color: Colors.indigo,
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),

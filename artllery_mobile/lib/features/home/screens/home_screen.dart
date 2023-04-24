@@ -50,10 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: screenHeight/80,),
               InkWell(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SearchArtScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchArtScreen()));
                 },
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
                         width: 1,
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       horizontal: (screenWidth - screenWidth / 1.15) / 2),
                   height: screenHeight / 20,
                   width: screenWidth / 1.15,
-                  child: Center(
+                  child: const Center(
                     child: Text("Search for art",
                       style: TextStyle(
                         fontSize: 20,
@@ -116,9 +116,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisSpacing: screenHeight/60,
                         crossAxisCount: 2),
                     itemBuilder: (context, int index) => Container(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset("assets/images/cloud.png",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.indigo,
                       ),
                     )),
               ),
@@ -171,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           CircleAvatar(
+                            foregroundImage: const AssetImage("assets/images/user.png"),
                             radius: screenHeight / 24,
                           ),
                           const Text("Picaso Picaso",
