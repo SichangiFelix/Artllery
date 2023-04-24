@@ -2,6 +2,7 @@ import 'package:artllery_mobile/features/authentication/services/auth_service.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../art/screens/search_art_screen.dart';
 import '../../artist/screens/artist_screen.dart';
 import '../components/app_drawer.dart';
 
@@ -47,27 +48,26 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             children: [
               SizedBox(height: screenHeight/80,),
-              Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: (screenWidth - screenWidth / 1.15) / 2),
-                height: screenHeight / 20,
-                width: screenWidth / 1.15,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Search for art",
-                    hintStyle: const TextStyle(
-                      fontSize: 16,
-                    ),
-                    border: UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
+              InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SearchArtScreen()));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 1,
                       ),
                     ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
+                  ),
+                  margin: EdgeInsets.symmetric(
+                      horizontal: (screenWidth - screenWidth / 1.15) / 2),
+                  height: screenHeight / 20,
+                  width: screenWidth / 1.15,
+                  child: Center(
+                    child: Text("Search for art",
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
                     ),
                   ),
