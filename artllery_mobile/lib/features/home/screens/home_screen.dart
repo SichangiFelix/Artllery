@@ -2,6 +2,7 @@ import 'package:artllery_mobile/features/authentication/services/auth_service.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../artist/screens/artist_screen.dart';
 import '../components/app_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -160,19 +161,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: 5,
                   itemBuilder: (context, int index) => Padding(
                     padding: EdgeInsets.symmetric(horizontal: screenWidth / 40),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        CircleAvatar(
-                          radius: screenHeight / 24,
-                        ),
-                        const Text("Picaso Picaso",
-                          style: TextStyle(
-                            fontSize: 18,
-
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => const ArtistScreen(),
+                        ));
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CircleAvatar(
+                            radius: screenHeight / 24,
                           ),
-                        ),
-                      ],
+                          const Text("Picaso Picaso",
+                            style: TextStyle(
+                              fontSize: 18,
+
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
