@@ -58,12 +58,12 @@ class _ArtistScreenState extends State<ArtistScreen> {
                 ),
                 itemCount: 8,
                 itemBuilder: (context, index) => Container(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                      child: Image.asset("assets/images/tree.png", fit: BoxFit.cover,)) ,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                   ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                      child: Image.asset("assets/images/tree.png", fit: BoxFit.cover,)) ,
                 ),
               ),
             )

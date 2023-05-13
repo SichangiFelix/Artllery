@@ -58,10 +58,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [AppColors.jungleGreen, Theme.of(context).scaffoldBackgroundColor],
-                    stops: [0.9, 1.0],
+                    stops: const [0.9, 1.0],
                   ),
                     color: AppColors.jungleGreen,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(150),
                         topRight: Radius.circular(200),
                         bottomRight: Radius.circular(150),
@@ -79,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   decoration: BoxDecoration(
                       gradient: RadialGradient(
                         colors: [AppColors.jungleGreen, Theme.of(context).scaffoldBackgroundColor],
-                        stops: [0.9, 1.0],
+                        stops: const [0.9, 1.0],
                       ),
                       color: AppColors.jungleGreen,
                       borderRadius: BorderRadius.circular(500)),

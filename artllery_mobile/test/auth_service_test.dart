@@ -1,6 +1,4 @@
-import 'package:artllery_mobile/features/authentication/services/auth_service.dart';
 import 'package:test/test.dart';
-import 'dart:ui';
 
 void main(){
   group("Login", (){

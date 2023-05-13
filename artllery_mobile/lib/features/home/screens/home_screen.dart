@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../art/screens/search_art_screen.dart';
+import '../../art/screens/selected_art.dart';
 import '../../artist/screens/artist_screen.dart';
 import '../components/app_drawer.dart';
 
@@ -80,19 +81,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "Top Art",
                       style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      "More",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectedArtScreen()));
+                      },
+                      child: const Text(
+                        "More",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -116,14 +122,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisSpacing: screenHeight/60,
                         crossAxisCount: 2),
                     itemBuilder: (context, int index) => Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.asset("assets/images/cloud.png",
                           fit: BoxFit.cover,
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
                       ),
                     )),
               ),

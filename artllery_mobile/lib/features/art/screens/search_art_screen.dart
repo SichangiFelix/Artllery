@@ -21,7 +21,7 @@ class _SearchArtScreenState extends State<SearchArtScreen> {
         elevation: 2,
         centerTitle: true,
         title: Padding(
-          padding: EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10),
           child: TextFormField(
             decoration: InputDecoration(
               hintText: "Search for art",
@@ -59,12 +59,12 @@ class _SearchArtScreenState extends State<SearchArtScreen> {
                 itemBuilder: (context, int index) => Container(
                   margin: EdgeInsets.symmetric(horizontal: screenWidth/50),
                   width: screenWidth/4.5,
-                  child: Center(
-                    child: Text("Drawings"),
-                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.brown.shade200,
+                  ),
+                  child: const Center(
+                    child: Text("Drawings"),
                   ),
                 ),
               ),
@@ -92,14 +92,14 @@ class _SearchArtScreenState extends State<SearchArtScreen> {
                 ),
                 itemCount: 8,
                 itemBuilder: (context, index) => Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset("assets/images/tree.png",
                       fit: BoxFit.cover,
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
               ),

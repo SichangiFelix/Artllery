@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../authentication/services/auth_service.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
@@ -15,12 +18,12 @@ class AppDrawer extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width,
           ),
-          Text("Home"),
+          const Text("Home"),
           ElevatedButton(
               onPressed: () {
                 context.read<AuthService>().logout();
               },
-              child: Text("Logout")),
+              child: const Text("Logout")),
         ],
       ),
     );

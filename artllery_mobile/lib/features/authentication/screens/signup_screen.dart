@@ -178,7 +178,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           validator: (value){
                             if(value!.isEmpty){
                               return "You have to provide a password";
-                            }else if(value!.length < 8){
+                            }else if(value.length < 8){
                               return "Your password must be 8 or more characters long";
                             }
                           },
@@ -289,7 +289,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     SizedBox(height: screenHeight/60,),
                     GestureDetector(
                       onTap: (){
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return SigninScreen();}));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return const SigninScreen();}));
                       },
                       child: const Text(
                         "I already have an account",
