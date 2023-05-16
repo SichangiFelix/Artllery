@@ -1,3 +1,4 @@
+import 'package:artllery_mobile/features/art/screens/selected_art.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -91,14 +92,19 @@ class _SearchArtScreenState extends State<SearchArtScreen> {
                   ],
                 ),
                 itemCount: 8,
-                itemBuilder: (context, index) => Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset("assets/images/tree.png",
-                      fit: BoxFit.cover,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectedArtScreen()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset("assets/images/tree.png",
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

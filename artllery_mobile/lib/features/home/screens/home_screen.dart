@@ -89,18 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectedArtScreen()));
-                      },
-                      child: const Text(
-                        "More",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -121,14 +109,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisSpacing: screenWidth/12,
                       mainAxisSpacing: screenHeight/60,
                         crossAxisCount: 2),
-                    itemBuilder: (context, int index) => Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset("assets/images/cloud.png",
-                          fit: BoxFit.cover,
+                    itemBuilder: (context, int index) => GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectedArtScreen()));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset("assets/images/cloud.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     )),
