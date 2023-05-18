@@ -82,6 +82,52 @@ void main() {
   });
 
   group("SignUp", () {
-    test("Empty signup credentials will throw an exception", () {});
+
+    late MockClient client;
+    late AuthService authService;
+
+    var signUpData = {
+      "first_name": "Felix",
+      "username": "Prime",
+      "email": "sichangi24@gmail.com",
+      "password": "test_test",
+    };
+
+    String baseURL = "http://test_url.com";
+    String endpoint = '/register/';
+    Uri uri = Uri.parse('$baseURL$endpoint');
+
+    final responseBody = {
+      'accessToken': 'fjalkfd;',
+      'refreshToken': 'al;fdjakf',
+    }.toString();
+
+    setUp(() {
+      client = MockClient();
+      authService = AuthService(client: client, baseURL: baseURL);
+    });
+
+    test("An exception is thrown if the server returns a status code that is not 200", () async{
+
+      final mockResponse = MockResponse();
+
+      when(
+            () => client.post(
+          uri,
+          headers: any(named: 'headers'),
+          body: any(named: 'body'),
+        ),
+      ).thenAnswer((invocation) async => mockResponse);
+
+      when(() => mockResponse.statusCode).thenReturn(404);
+
+      when(() => mockResponse.body).thenReturn(responseBody);
+
+      expect(
+        authService.createUser(data: signUpData),
+        throwsException,
+      );
+
+    });
   });
 }
