@@ -1,13 +1,17 @@
 class ArtModel{
+  int id;
+  int artistId;
   String artName;
   String description;
   String dimensions;
   double price;
   List<String> artImages;
-  String datePosted;
+  DateTime datePosted;
   String materials;
 
   ArtModel({
+    required this.id,
+    required this.artistId,
     required this.artName,
     required this.description,
     required this.dimensions,
@@ -17,7 +21,3 @@ class ArtModel{
     required this.materials,
 });
 }
-
-//Next stages
-//likes
-//
