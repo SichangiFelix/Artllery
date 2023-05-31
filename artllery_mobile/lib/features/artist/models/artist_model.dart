@@ -5,7 +5,7 @@ class ArtistModel{
   String lastName;
   String username;
   String email;
-  String phoneContact;
+  String phone;
   List<ArtModel> artPieces;
   List<String> cart;
 
@@ -14,7 +14,7 @@ class ArtistModel{
     required this.lastName,
     required this.username,
     required this.email,
-    required this.phoneContact,
+    required this.phone,
     required this.artPieces,
     required this.cart,
 });
