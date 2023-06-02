@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'artllery.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'artllery_db',
+        'NAME': 'artllery_database',
         'USER': 'postgres',
         'PASSWORD': 'PrimePostGre',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
