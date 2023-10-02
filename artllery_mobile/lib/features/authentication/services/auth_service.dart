@@ -6,7 +6,7 @@ class AuthService{
 
   AuthService({
     required http.Client client,
-    this.baseURL = "http://192.168.56.1:8000"
+    this.baseURL = "http://192.168.0.12:8000"
 }): _client = client;
 
   final String baseURL;
