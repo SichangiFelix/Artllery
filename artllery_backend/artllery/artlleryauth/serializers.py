@@ -10,6 +10,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
             'username',
             'email',
             'password',
+            'first_name',
+            'last_name',
 
         ]
         extra_kwargs = {"password": {"write_only": True}}
@@ -18,12 +20,16 @@ class UserCreateSerializer(serializers.ModelSerializer):
         username = validated_data["username"]
         email = validated_data["email"]
         password = validated_data["password"]
+        first_name = validated_data["first_name"]
+        last_name = validated_data["last_name"]
+
+
 
         if (email and User.objects.filter(email=email).exclude(username=username).exists()):
             raise serializers.ValidationError(
                 {"email": "Email addresses must be unique."})
         
-        user = User(username = username, email = email)
+        user = User(username = username, email = email, first_name = first_name, last_name = last_name)
         user.set_password(password)
         user.save()
         return user

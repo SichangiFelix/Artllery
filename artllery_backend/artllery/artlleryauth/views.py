@@ -1,5 +1,5 @@
 from .serializers import UserSerializer
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login, authenticate
 from rest_framework import viewsets
 from rest_framework import decorators, permissions, response, status
 from django.views.decorators.csrf import csrf_exempt
@@ -18,10 +18,13 @@ def registration(request):
     serializer = UserCreateSerializer(data=request.data)
     if not serializer.is_valid():
         return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    
     user = serializer.save()
+
     refresh = RefreshToken.for_user(user)
     res = {
         "refresh": str(refresh),
         "access": str(refresh.access_token),
+        "user": str(user),
     }
     return response.Response(res, status.HTTP_201_CREATED)
