@@ -1,38 +1,27 @@
 from .serializers import UserSerializer
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework import decorators, permissions, response, status
 from django.views.decorators.csrf import csrf_exempt
 import jwt
-from rest_framework import status
-from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
+from .serializers import UserCreateSerializer
 
 
-# Create your views here.
-class UserViewSet(viewsets.ModelViewSet):
+User = get_user_model()
 
-    permission_classes = (IsAuthenticated,)
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
+@decorators.api_view(["POST"])
+@decorators.permission_classes([permissions.AllowAny])
 
-@api_view(['POST'])
-@csrf_exempt
-@permission_classes((AllowAny,))
-def register(request):
-    # Extract the user credentials from the request
-    first_name = request.data.get('first_name')
-    username = request.data.get('username')
-    email = request.data.get('email')
-    password = request.data.get('password')
-    
-    # Create a new user with the provided credentials
-    user = User.objects.create_user(username=username, email=email, password=password, first_name = first_name)
-    
-    # Generate a JWT token for the new user
-    payload = {'user_id': user.id}
-    jwt_token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
-    
-    # Return the JWT token in the response
-    return Response({'token': jwt_token}, status=status.HTTP_200_OK)
+def registration(request):
+    serializer = UserCreateSerializer(data=request.data)
+    if not serializer.is_valid():
+        return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    user = serializer.save()
+    refresh = RefreshToken.for_user(user)
+    res = {
+        "refresh": str(refresh),
+        "access": str(refresh.access_token),
+    }
+    return response.Response(res, status.HTTP_201_CREATED)
