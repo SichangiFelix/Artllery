@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,9 +71,9 @@ REST_FRAMEWORK = {
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': '387441653141-c3j0bs07cj4h7813rj56i5ijiu7v7881.apps.googleusercontent.com',
+            'client_id': config('CLIENT_ID'),
             # 'secret': 'YOUR_GOOGLE_CLIENT_SECRET',
-            'key': 'AIzaSyAKdBuBWZoVp_fJwwn7QWSn5CXZ8JfTME4'
+            'key': config('KEY')
         }
     },
 }
@@ -115,11 +116,11 @@ WSGI_APPLICATION = 'artllery.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'artllery_database',
-        'USER': 'postgres',
-        'PASSWORD': 'PrimePostGre',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT'),
     }
 }
 
@@ -150,7 +151,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Asmara'
 
 USE_I18N = True
 
